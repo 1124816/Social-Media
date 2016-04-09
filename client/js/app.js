@@ -25,11 +25,27 @@ function($stateProvider, $urlRouterProvider) {
 app.factory('posts', [function(){
   var o = {
     posts: [ 
-  {title: 'post 1', upvotes: 5, link: ''},
-  {title: 'post 2', upvotes: 2, link: ''},
-  {title: 'post 3', upvotes: 15, link: ''},
-  {title: 'post 4', upvotes: 9, link: ''},
-  {title: 'post 5', upvotes: 4, link: ''}]
+  {title: 'post 1', upvotes: 5, link: '',   comments: [
+    {author: 'Joe', body: 'Cool post!', upvotes: 0},
+    {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]},
+  {title: 'post 2', upvotes: 2, link: '',   comments: [
+    {author: 'Joe', body: 'Cool post!', upvotes: 0},
+    {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]},
+  {title: 'post 3', upvotes: 15, link: '',   comments: [
+    {author: 'Joe', body: 'Cool post!', upvotes: 0},
+    {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]},
+  {title: 'post 4', upvotes: 9, link: '',   comments: [
+    {author: 'Joe', body: 'Cool post!', upvotes: 0},
+    {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]},
+  {title: 'post 5', upvotes: 4, link: '',   comments: [
+    {author: 'Joe', body: 'Cool post!', upvotes: 0},
+    {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]}
+  ]
   };
   return o;
 }]);
@@ -63,5 +79,15 @@ app.controller('PostsCtrl', [
 function($scope, $stateParams, posts){
   $scope.post = posts.posts[$stateParams.id];
   
+    $scope.upvote = function(comment){
+    comment.upvotes+=1;  
+  };
+  
+  $scope.addComment = function() {
+    if($scope.ctext != "" && $scope.ctext) {
+      $scope.post.comments.push({author:'user', body: $scope.ctext, upvotes:0})
+      $scope.ctext = "";
+    }
+  }
   
 }]);
