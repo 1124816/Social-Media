@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h1>stuffs</h1>
+  </div>
+  
+  <div ng-repeat="post in posts | orderBy: '-upvotes'">
+    <a ng-show="post.link" href="{{post.link}}" style="color:black;text-decoration: none;">
+    {{post.title}}
+    </a>
+    <span ng-hide="post.link">
+    {{post.title}}
+    </span>
+    <span>
+    <a href="#/posts/{{posts.indexOf(post)}}">Comments</a>
+    </span>
+    <span ng-click="upvote(post)">
+      - upvotes: {{post.upvotes}}
+    </span>
+</div>
+    <form ng-submit="addPost()">
+    <input type="text" placeholder="Title" ng-model="title"></input><br>
+    <input type="text" placeholder="Link" ng-model="link"></input><br>
+    <button type="submit">Post</button>
+    </form>

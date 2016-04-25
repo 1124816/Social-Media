@@ -8,14 +8,14 @@ function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: '/home.html',
+      templateUrl: 'template/home.html',
       controller: 'MainCtrl'
     });
     
   $stateProvider
     .state('posts', {
       url: '/posts/{id}',
-      templateUrl: '/posts.html',
+      templateUrl: 'template/posts.html',
       controller: 'PostsCtrl'
     });
     
